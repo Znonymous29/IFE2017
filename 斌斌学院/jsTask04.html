@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>IFE JavaScript Task 04</title>
 <style>
+    div{
+        margin: auto;
+    }
     span{
         float: left;
         display: block;
         text-align:center;
         line-height:50px;
-        margin: 0 2px;
+        margin: 2px 2px;
         height: 50px;
         width: 50px;
         background-color: red;
@@ -52,13 +55,17 @@
             queue.removeChild(span);
             alert(span.innerHTML);
         }
+        var spans = queue.getElementsByTagName("span");
+        for(var i = 0;i < spans.length;i++){
+            spans[i].onclick = function () {
+                this.parentNode.removeChild(this);
+            }
+        }
+
         document.getElementById("leftIn").addEventListener("click",leftIn);
         document.getElementById("rightIn").addEventListener("click",rightIn);
         document.getElementById("leftOut").addEventListener("click",leftOut);
         document.getElementById("rightOut").addEventListener("click",rightOut);
-        document.getElementsByTagName("span").onclick = function () {
-            this.parentNode.removeChild(this);
-        }
     }
 
 </script>
