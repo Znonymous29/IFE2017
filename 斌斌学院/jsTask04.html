@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 04</title>
+<style>
+    span{
+        float: left;
+        display: block;
+        text-align:center;
+        line-height:50px;
+        margin: 0 2px;
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<div id="input">
+    <input type="text" id="number" value="">
+    <input type="button" id="leftIn" value="左侧入">
+    <input type="button" id="rightIn" value="右侧入">
+    <input type="button" id="leftOut" value="左侧出">
+    <input type="button" id="rightOut" value="右侧出">
+</div>
+
+<div id="queue"></div>
+<script>
+    window.onload = function () {
+        var queue = document.getElementById("queue");
+        function leftIn() {
+            var inputValue = document.getElementById("number").value;
+            var span = document.createElement("span");
+            span.innerHTML = inputValue;
+            queue.insertBefore(span,queue.childNodes[0]);
+        }
+        function rightIn() {
+            var inputValue = document.getElementById("number").value;
+            var span = document.createElement("span");
+            span.innerHTML = inputValue;
+            queue.appendChild(span);
+        }
+        function leftOut() {
+            var span = queue.firstChild;
+            queue.removeChild(span);
+            alert(span.innerHTML);
+        }
+        function rightOut() {
+            var span = queue.lastChild;
+            queue.removeChild(span);
+            alert(span.innerHTML);
+        }
+        document.getElementById("leftIn").addEventListener("click",leftIn);
+        document.getElementById("rightIn").addEventListener("click",rightIn);
+        document.getElementById("leftOut").addEventListener("click",leftOut);
+        document.getElementById("rightOut").addEventListener("click",rightOut);
+        document.getElementsByTagName("span").onclick = function () {
+            this.parentNode.removeChild(this);
+        }
+    }
+
+</script>
+</body>
+</html>
