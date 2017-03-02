@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>IFE JavaScript Task 04</title>
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
     div{
         margin: auto;
     }
@@ -31,42 +35,71 @@
 
 <div id="queue"></div>
 <script>
-    window.onload = function () {
-        var queue = document.getElementById("queue");
+        function $(id) {
+            return document.getElementById(id);
+        }
+        function addHandler(element, type ,func) {
+            if (element.addEventListener) {
+                element.addEventListener(type, func, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, func);
+            } else {
+                element["on"+type] = func;
+            }
+        }
+        function validate() {
+            if(isNaN($("number").value) || $("number").value == ""){
+                alert("请输入数字呦<(￣3￣)>");
+                $("number").value = "";
+                return true;
+            }
+            return false;
+        }
+
         function leftIn() {
-            var inputValue = document.getElementById("number").value;
+            if(validate()){return;}
             var span = document.createElement("span");
-            span.innerHTML = inputValue;
-            queue.insertBefore(span,queue.childNodes[0]);
+            span.innerHTML = $("number").value;
+            $("queue").insertBefore(span,$("queue").childNodes[0]);
         }
         function rightIn() {
-            var inputValue = document.getElementById("number").value;
+            if(validate()){return;}
             var span = document.createElement("span");
-            span.innerHTML = inputValue;
-            queue.appendChild(span);
+            span.innerHTML = $("number").value;
+            $("queue").appendChild(span);
         }
         function leftOut() {
-            var span = queue.firstChild;
-            queue.removeChild(span);
+            if (!$("queue").hasChildNodes()) {
+                alert('暂无数据');
+                return;
+            }
+            var span = $("queue").firstChild;
+            $("queue").removeChild(span);
             alert(span.innerHTML);
         }
         function rightOut() {
-            var span = queue.lastChild;
-            queue.removeChild(span);
+            if (!$("queue").hasChildNodes()) {
+                alert('暂无数据');
+                return;
+            }
+            var span = $("queue").lastChild;
+            $("queue").removeChild(span);
             alert(span.innerHTML);
         }
-        var spans = queue.getElementsByTagName("span");
-        for(var i = 0;i < spans.length;i++){
-            spans[i].onclick = function () {
-                this.parentNode.removeChild(this);
+        $("queue").onmouseover = function () {
+            var spans = $("queue").getElementsByTagName("span");
+            for(var i in spans){
+                spans[i].index = i;
+                spans[i].onclick = function () {
+                    $("queue").removeChild($("queue").childNodes[this.index]);
+                }
             }
         }
 
-        document.getElementById("leftIn").addEventListener("click",leftIn);
-        document.getElementById("rightIn").addEventListener("click",rightIn);
-        document.getElementById("leftOut").addEventListener("click",leftOut);
-        document.getElementById("rightOut").addEventListener("click",rightOut);
-    }
+        addHandler($("leftIn"),"click",leftIn);
+        addHandler($("rightIn"),"click",rightIn);
+        addHandler($("leftOut"),"click",leftOut);
+        addHandler($("rightOut"),"click",rightOut);
 
 </script>
 </body>
