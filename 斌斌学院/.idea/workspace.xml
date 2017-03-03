@@ -18,6 +18,26 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="test.html" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/../../test.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="312">
+                    <caret line="148" column="22" lean-forward="false" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="22" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="斌斌学院" />
@@ -37,8 +57,8 @@
       <file leaf-file-name="jsTask05.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jsTask05.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="54" column="38" lean-forward="true" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
+            <state relative-caret-position="80">
+              <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -63,6 +83,7 @@
       <list>
         <option value="$PROJECT_DIR$/../../新建文本文档.html" />
         <option value="$PROJECT_DIR$/jsTask04.html" />
+        <option value="$PROJECT_DIR$/../../test.html" />
         <option value="$PROJECT_DIR$/jsTask05.html" />
       </list>
     </option>
@@ -74,10 +95,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="346" />
-    <option name="y" value="68" />
+    <option name="x" value="310" />
+    <option name="y" value="81" />
     <option name="width" value="1507" />
-    <option name="height" value="829" />
+    <option name="height" value="836" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -200,15 +221,15 @@
       <updated>1488371672910</updated>
       <workItem from="1488371674489" duration="5676000" />
       <workItem from="1488433711978" duration="4870000" />
-      <workItem from="1488539668417" duration="4681000" />
+      <workItem from="1488539668417" duration="9769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15227000" />
+    <option name="totallyTimeSpent" value="20315000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="346" y="68" width="1507" height="829" extended-state="0" />
+    <frame x="310" y="81" width="1507" height="836" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24949698" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -257,10 +278,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="148" column="22" lean-forward="false" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jsTask05.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="54" column="38" lean-forward="true" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
+        <state relative-caret-position="80">
+          <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
           <folding />
         </state>
       </provider>

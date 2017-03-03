@@ -11,17 +11,24 @@
     div{
         margin: auto;
     }
-    span{
-        float: left;
-        display: block;
-        text-align:center;
-        line-height:50px;
-        margin: 2px 2px;
-        height: 50px;
-        width: 50px;
-        background-color: red;
-        color: white;
+    #queue{
+        display: flex;
+        align-items:flex-end;
+        position: absolute;
+        top:30%;
     }
+    #queue div{
+        width: 15px;
+        background-color: red;
+        margin: 0 2px;
+    }
+    #queue span{
+        font-size: 10px;
+        position: absolute;
+        bottom: 0px;
+        margin-bottom: -20px;
+    }
+
 </style>
 </head>
 <body>
@@ -34,6 +41,9 @@
 </div>
 
 <div id="queue"></div>
+
+    <input type="button" id="sort" value="排序">
+    <input type="button" id="clear" value="清除">
 <script>
 
         function $(id) {
@@ -48,19 +58,29 @@
                 element["on"+type] = func;
             }
         }
-        var arr = [];
+
         //添加元素
         function addElement(event) {
             event = event || window.event;
+            var listNum = $("queue").getElementsByTagName("div").length;
+            var inputNum = $("number").value;
+            if(listNum>=60){
+                alert("添加的元素队列超过60个");
+                $("number").value = "";
+                return false;
+            }
             if(validate($("number"))){
-                var newNode = "<span class='node'>" + $("number").value + "</span>";
-                var newSpan = document.getElementsByClassName("node");
+                inputNumReal = inputNum;
+                inputNum *= 4;
+                var node = document.createElement("div");
+                var span = document.createElement("span");
+                span.append(inputNumReal);
+                node.appendChild(span);
+                node.setAttribute("style","height:"+inputNum+"px");
                 if(event.target.id == "leftIn"){
-                    arr.unshift($("number").value);
-                    $("queue").innerHTML = newNode + $("queue").innerHTML;
+                    $("queue").insertBefore(node,$("queue").childNodes[0]);
                 }else if(event.target.id == "rightIn"){
-                    arr.push($("number").value);
-                    $("queue").innerHTML = $("queue").innerHTML + newNode;
+                    $("queue").appendChild(node);
                 }
                 $("number").value = "";
             }else {
@@ -92,10 +112,54 @@
                 alert("队列为空！");
             }
         }
+        //冒泡法排序
+        function sort() {
+            var listNum = $("queue").getElementsByTagName("div").length;
+            var list = $("queue").getElementsByTagName("div");
+
+            var i = 0;
+            var j = 0;
+            function sortShow() {
+                if (i < listNum){
+                    if (j < listNum - i - 1){
+                        if(list[j].innerText > list[j+1].innerText){
+                            list[j].style.backgroundColor = "blue";
+                            $("queue").insertBefore(list[j+1],list[j]);
+                        }else{
+                            list[j].style.backgroundColor = "red";
+                            list[j+1].style.backgroundColor = "blue";
+                        }
+                        j++;
+                        setTimeout(sortShow,50);
+                    }else{
+                        i++;
+                        j = 0;
+                        setTimeout(sortShow,50);
+                    }
+                }
+                if(i == listNum - 1){
+                    list[j].style.backgroundColor = "blue";
+                }
+            }
+            sortShow();
+        }
+
+        //清除图表
+        function clear(){
+            var listNum = $("queue").getElementsByTagName("div").length;
+            for(var i = 0;i < listNum ;i++){
+                $("queue").removeChild($("queue").firstChild);
+            }
+        }
+
+
         addHandler($("leftIn"),"click",addElement);
         addHandler($("rightIn"),"click",addElement);
         addHandler($("leftOut"),"click",deleteElement);
         addHandler($("rightOut"),"click",deleteElement);
+        addHandler($("sort"),"click",sort);
+        addHandler($("clear"),"click",clear);
+
 
 /*
         function validate() {
