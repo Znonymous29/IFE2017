@@ -112,6 +112,18 @@
                 alert("队列为空！");
             }
         }
+
+        //点击去除元素
+        $("queue").onmouseover = function () {
+            var div = $("queue").getElementsByTagName("div");
+            for(var i in div){
+                div[i].index = i;
+                div[i].onclick = function () {
+                    $("queue").removeChild($("queue").childNodes[this.index]);
+                }
+            }
+        }
+
         //冒泡法排序
         function sort() {
             var listNum = $("queue").getElementsByTagName("div").length;
@@ -122,7 +134,7 @@
             function sortShow() {
                 if (i < listNum){
                     if (j < listNum - i - 1){
-                        if(list[j].innerText > list[j+1].innerText){
+                        if(Number(list[j].innerText) > Number(list[j+1].innerText)){  //注意使用number函数，避免出现100排序错误问题
                             list[j].style.backgroundColor = "blue";
                             $("queue").insertBefore(list[j+1],list[j]);
                         }else{

@@ -57,8 +57,8 @@
       <file leaf-file-name="jsTask05.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jsTask05.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
+            <state relative-caret-position="432">
+              <caret line="137" column="67" lean-forward="true" selection-start-line="137" selection-start-column="67" selection-end-line="137" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -95,8 +95,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="310" />
-    <option name="y" value="81" />
+    <option name="x" value="115" />
+    <option name="y" value="74" />
     <option name="width" value="1507" />
     <option name="height" value="836" />
   </component>
@@ -221,15 +221,15 @@
       <updated>1488371672910</updated>
       <workItem from="1488371674489" duration="5676000" />
       <workItem from="1488433711978" duration="4870000" />
-      <workItem from="1488539668417" duration="9769000" />
+      <workItem from="1488539668417" duration="10311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20315000" />
+    <option name="totallyTimeSpent" value="20857000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="310" y="81" width="1507" height="836" extended-state="0" />
+    <frame x="115" y="74" width="1507" height="836" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24949698" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -288,8 +288,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jsTask05.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
+        <state relative-caret-position="432">
+          <caret line="137" column="67" lean-forward="true" selection-start-line="137" selection-start-column="67" selection-end-line="137" selection-end-column="67" />
           <folding />
         </state>
       </provider>
