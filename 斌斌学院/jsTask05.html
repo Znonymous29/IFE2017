@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 05</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        margin: auto;
+    }
+    span{
+        float: left;
+        display: block;
+        text-align:center;
+        line-height:50px;
+        margin: 2px 2px;
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<div id="input">
+    <input type="text" id="number" value="">
+    <input type="button" id="leftIn" value="左侧入">
+    <input type="button" id="rightIn" value="右侧入">
+    <input type="button" id="leftOut" value="左侧出">
+    <input type="button" id="rightOut" value="右侧出">
+</div>
+
+<div id="queue"></div>
+<script>
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+        function addHandler(element, type ,func) {
+            if (element.addEventListener) {
+                element.addEventListener(type, func, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, func);
+            } else {
+                element["on"+type] = func;
+            }
+        }
+        var arr = [];
+        //添加元素
+        function addElement(event) {
+            event = event || window.event;
+            if(validate($("number"))){
+                var newNode = "<span class='node'>" + $("number").value + "</span>";
+                var newSpan = document.getElementsByClassName("node");
+                if(event.target.id == "leftIn"){
+                    arr.unshift($("number").value);
+                    $("queue").innerHTML = newNode + $("queue").innerHTML;
+                }else if(event.target.id == "rightIn"){
+                    arr.push($("number").value);
+                    $("queue").innerHTML = $("queue").innerHTML + newNode;
+                }
+                $("number").value = "";
+            }else {
+                alert("请输入正确数字呦<(￣3￣)>");
+            }
+        }
+
+        //验证输入框数字
+        function validate(element) {
+            var reg = /^([1-9]\d{1}|100)$/;
+            return reg.test(element.value);
+        }
+
+        //删除元素
+        function deleteElement(event){
+            event = event || window.event;
+            if($("queue").hasChildNodes())
+            {
+                if(event.target.id == "leftOut"){
+                    var child = $("queue").firstChild;
+                    arr.shift();
+                }else if(event.target.id = "rightOut"){
+                    arr.pop()
+                    var child = $("queue").lastChild;
+                }
+                alert("你删除了"+child.innerHTML);
+                $("queue").removeChild(child);
+            }else{
+                alert("队列为空！");
+            }
+        }
+        addHandler($("leftIn"),"click",addElement);
+        addHandler($("rightIn"),"click",addElement);
+        addHandler($("leftOut"),"click",deleteElement);
+        addHandler($("rightOut"),"click",deleteElement);
+
+/*
+        function validate() {
+            if(isNaN($("number").value) || $("number").value == ""){
+                alert("请输入数字呦<(￣3￣)>");
+                $("number").value = "";
+                return true;
+            }
+            else if ($("number").value < 10 || $("number").value > 100){
+                alert("输入数字要在10~100之间呦<(￣3￣)>");
+                $("number").value = "";
+                return true;
+            }
+            return false;
+        }
+
+        function leftIn() {
+            if(validate()){return;}
+            var span = document.createElement("span");
+            span.innerHTML = $("number").value;
+            $("queue").insertBefore(span,$("queue").childNodes[0]);
+        }
+        function rightIn() {
+            if(validate()){return;}
+            var span = document.createElement("span");
+            span.innerHTML = $("number").value;
+            $("queue").appendChild(span);
+        }
+        function leftOut() {
+            if (!$("queue").hasChildNodes()) {
+                alert('暂无数据');
+                return;
+            }
+            var span = $("queue").firstChild;
+            $("queue").removeChild(span);
+            alert(span.innerHTML);
+        }
+        function rightOut() {
+            if (!$("queue").hasChildNodes()) {
+                alert('暂无数据');
+                return;
+            }
+            var span = $("queue").lastChild;
+            $("queue").removeChild(span);
+            alert(span.innerHTML);
+        }
+        $("queue").onmouseover = function () {
+            var spans = $("queue").getElementsByTagName("span");
+            for(var i in spans){
+                spans[i].index = i;
+                spans[i].onclick = function () {
+                    $("queue").removeChild($("queue").childNodes[this.index]);
+                }
+            }
+        }
+
+        addHandler($("leftIn"),"click",leftIn);
+        addHandler($("rightIn"),"click",rightIn);
+        addHandler($("leftOut"),"click",leftOut);
+        addHandler($("rightOut"),"click",rightOut);
+*/
+
+</script>
+</body>
+</html>
