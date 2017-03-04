@@ -26,7 +26,7 @@
 </head>
 <body>
 <div id="input">
-    <input type="text" id="number" value="">
+    <input type="text" id="word" value="">
     <input type="button" id="leftIn" value="左侧入">
     <input type="button" id="rightIn" value="右侧入">
     <input type="button" id="leftOut" value="左侧出">
@@ -48,9 +48,9 @@
             }
         }
         function validate() {
-            if(isNaN($("number").value) || $("number").value == ""){
+            if(isNaN($("word").value) || $("word").value == ""){
                 alert("请输入数字呦<(￣3￣)>");
-                $("number").value = "";
+                $("word").value = "";
                 return true;
             }
             return false;
@@ -59,13 +59,13 @@
         function leftIn() {
             if(validate()){return;}
             var span = document.createElement("span");
-            span.innerHTML = $("number").value;
+            span.innerHTML = $("word").value;
             $("queue").insertBefore(span,$("queue").childNodes[0]);
         }
         function rightIn() {
             if(validate()){return;}
             var span = document.createElement("span");
-            span.innerHTML = $("number").value;
+            span.innerHTML = $("word").value;
             $("queue").appendChild(span);
         }
         function leftOut() {

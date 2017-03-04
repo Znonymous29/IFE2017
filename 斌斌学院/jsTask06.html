@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 04</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            margin: auto;
+        }
+        .word {
+            float: left;
+            display: block;
+            text-align:center;
+            line-height:50px;
+            margin: 2px 2px;
+            height: 50px;
+            width: 70px;
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="input">
+    <textarea name="word" id="word" cols="30" rows="10"></textarea>
+    <input type="button" id="leftIn" value="左侧入">
+    <input type="button" id="rightIn" value="右侧入">
+    <input type="button" id="leftOut" value="左侧出">
+    <input type="button" id="rightOut" value="右侧出">
+    <input type="text" id="match">
+    <input type="button" id="search" value="查询匹配">
+</div>
+
+<div id="queue"></div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    function addHandler(element, type ,func) {
+        if (element.addEventListener) {
+            element.addEventListener(type, func, false);
+        } else if (element.attachEvent) {
+            element.attachEvent("on" + type, func);
+        } else {
+            element["on"+type] = func;
+        }
+    }
+
+    var arr = [];
+
+    //分词
+    function splitWord() {
+        var re = /\s+|[,.]/;
+        var str = $("word").value;
+        arr = str.split(re);
+    }
+    addHandler($("search"),"click",splitWord);
+
+    function matchWord() {
+        var target = $("match").value;
+
+    }
+    //添加元素
+    function addElement(event) {
+        event = event || window.event;
+        splitWord();
+        for(var i in arr){
+            var div = document.createElement("div");
+            div.innerHTML = arr[i];
+            div.setAttribute("class","word");
+            if(event.target.id == "leftIn"){
+                $("queue").insertBefore(div,$("queue").childNodes[0]);
+            }else if(event.target.id == "rightIn"){
+                $("queue").appendChild(div);
+            }
+        }
+        $("word").value = "";
+    }
+
+    function deleteElement(event){
+        event = event || window.event;
+        if($("queue").hasChildNodes())
+        {
+            if(event.target.id == "leftOut"){
+                var child = $("queue").firstChild;
+                arr.shift();
+            }else if(event.target.id = "rightOut"){
+                arr.pop();
+                var child = $("queue").lastChild;
+            }
+            alert("你删除了"+child.innerHTML);
+            $("queue").removeChild(child);
+        }else{
+            alert("队列为空！");
+        }
+        console.log(arr);
+    }
+
+
+    $("queue").onmouseover = function () {
+        var words = $("queue").getElementsByTagName("div");
+        for(var i in words){
+            words[i].index = i;
+            words[i].onclick = function () {
+                $("queue").removeChild($("queue").childNodes[this.index]);
+            }
+        }
+    }
+
+    addHandler($("leftIn"),"click",addElement);
+    addHandler($("rightIn"),"click",addElement);
+    addHandler($("leftOut"),"click",deleteElement);
+    addHandler($("rightOut"),"click",deleteElement);
+
+</script>
+</body>
+</html>

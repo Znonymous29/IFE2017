@@ -43,6 +43,7 @@
 <div id="queue"></div>
 
     <input type="button" id="sort" value="排序">
+    <input type="button" id="random" value="自动生成">
     <input type="button" id="clear" value="清除">
 <script>
 
@@ -101,9 +102,7 @@
             {
                 if(event.target.id == "leftOut"){
                     var child = $("queue").firstChild;
-                    arr.shift();
                 }else if(event.target.id = "rightOut"){
-                    arr.pop()
                     var child = $("queue").lastChild;
                 }
                 alert("你删除了"+child.innerHTML);
@@ -142,11 +141,11 @@
                             list[j+1].style.backgroundColor = "blue";
                         }
                         j++;
-                        setTimeout(sortShow,50);
+                        setTimeout(sortShow,50); //设置排序速度
                     }else{
                         i++;
                         j = 0;
-                        setTimeout(sortShow,50);
+                        setTimeout(sortShow,50);  //设置排序速度
                     }
                 }
                 if(i == listNum - 1){
@@ -154,6 +153,22 @@
                 }
             }
             sortShow();
+        }
+
+
+        //自动生成随机数列
+        function random() {
+            for(var i = 0 ; i < 60 ;i++){
+                randomNum = Math.floor(Math.random()*90 + 10);
+                randomNumReal = randomNum;
+                randomNum *= 4;
+                var node = document.createElement("div");
+                var span = document.createElement("span");
+                span.append(randomNumReal);
+                node.appendChild(span);
+                node.setAttribute("style","height:"+randomNum+"px");
+                $("queue").appendChild(node);
+            }
         }
 
         //清除图表
@@ -170,6 +185,7 @@
         addHandler($("leftOut"),"click",deleteElement);
         addHandler($("rightOut"),"click",deleteElement);
         addHandler($("sort"),"click",sort);
+        addHandler($("random"),"click",random);
         addHandler($("clear"),"click",clear);
 
 
