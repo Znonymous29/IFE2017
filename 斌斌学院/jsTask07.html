@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 07</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            display: flex;
+            border: 1px solid black;
+            width: 800px;
+            margin: 2px auto;
+            height: 400px;
+            align-items: center;
+            justify-content:center;
+        }
+        .wrap div{
+            display: flex;
+            border: 1px solid black;
+            width: 40%;
+            height: 60%;
+            margin: 0 2%;
+            align-items: center;
+            justify-content:center;
+            background: #ffffff;
+        }
+        .btn{
+            text-align: center;
+            padding-top: 30px;
+        }
+        .btn button{
+            padding:5px 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="btn">
+    <button>前序遍历</button>
+    <button>中序遍历</button>
+    <button>后序遍历</button>
+</div>
+<script>
+    function addHandler(element, type ,func) {
+        if (element.addEventListener) {
+            element.addEventListener(type, func, false);
+        } else if (element.attachEvent) {
+            element.attachEvent("on" + type, func);
+        } else {
+            element["on"+type] = func;
+        }
+    }
+
+    var wrap = document.querySelector(".wrap");
+    var btn1 = document.getElementsByTagName("button")[0];
+    var btn2 = document.getElementsByTagName("button")[1];
+    var btn3 = document.getElementsByTagName("button")[2];
+    var arr = [];
+    var temp;
+    var toggle = false;
+    
+    //前序遍历
+    function preOrder(node) {
+        if(node){
+            arr.push(node);
+            preOrder(node.firstElementChild);
+            preOrder(node.lastElementChild);
+        }
+    }
+    //中序遍历
+    function inOrder(node) {
+        if(node){
+            inOrder(node.firstElementChild);
+            arr.push(node);
+            inOrder(node.lastElementChild);
+        }
+    }
+    //后序遍历
+    function postOrder(node) {
+        if(node){
+            postOrder(node.firstElementChild);
+            postOrder(node.lastElementChild);
+            arr.push(node);
+        }
+    }
+    //遍历可视化
+    function showTime() {
+        for(var i = 0;i < arr.length;i++){
+            setTimeout(function (i) {
+                return function () {
+                    if(i == arr.length - 1){
+                        toggle = false;
+                    }
+                    if(temp){
+                        temp.style.background= "white";
+                    }
+                    arr[i].style.background = "blue";
+                    temp = arr[i];
+                }
+            }(i),i*500)
+        }
+    }
+
+
+    //初始化
+    function reset(){
+        arr = [];
+        if(temp){
+            temp.style.background = "white";
+        }
+    }
+
+    addHandler(btn1,"click",function () {
+        if(!toggle){
+            toggle = true;
+            reset();
+            preOrder(wrap);
+            showTime();
+        }
+    })
+    addHandler(btn2,"click",function () {
+        if(!toggle){
+            toggle = true;
+            reset();
+            inOrder(wrap);
+            showTime();
+        }
+    })
+    addHandler(btn3,"click",function () {
+        if(!toggle){
+            toggle = true;
+            reset();
+            postOrder(wrap);
+            showTime();
+        }
+    })
+
+
+</script>
+</body>
+</html>
