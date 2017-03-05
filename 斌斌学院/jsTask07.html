@@ -110,7 +110,7 @@
     
     //前序遍历
     function preOrder(node) {
-        if(node){
+        if(!(node == null)){
             arr.push(node);
             preOrder(node.firstElementChild);
             preOrder(node.lastElementChild);
@@ -118,7 +118,7 @@
     }
     //中序遍历
     function inOrder(node) {
-        if(node){
+        if(!(node == null)){
             inOrder(node.firstElementChild);
             arr.push(node);
             inOrder(node.lastElementChild);
@@ -126,7 +126,7 @@
     }
     //后序遍历
     function postOrder(node) {
-        if(node){
+        if(!(node == null)){
             postOrder(node.firstElementChild);
             postOrder(node.lastElementChild);
             arr.push(node);
