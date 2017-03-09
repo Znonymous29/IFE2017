@@ -134,7 +134,7 @@
 <div id="button">
     <input type="button" value="深度遍历">
     <input type="button" value="广度遍历">
-    <input type="text">
+    <input type="text" id="text">
     <input type="button" value="深度查询">
     <input type="button" value="广度查询">
 </div>
@@ -144,8 +144,7 @@
     var btn2 = document.getElementsByTagName("input")[1];
     var btn3 = document.getElementsByTagName("input")[3];
     var btn4 = document.getElementsByTagName("input")[4];
-    var searchText = document.getElementsByTagName("input")[2].value;
-    var toggle = false;
+    var searchText = document.getElementById("text").value;
     var index = 0;
     var arr = [];
 
@@ -183,23 +182,22 @@
 
     //遍历可视化
     function render(){
+        console.log(searchText);
         var i = 0;
         var len = arr.length;
-        if(arr[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") == searchText){
+        if(arr[i].firstChild.nodeValue == searchText){
             arr[i].className = "found";
-            lock = false;
             clearInterval(timer);
         }
         else{
             arr[i++].className = "active";
         }
-        lock = true;
+
         timer = setInterval(function(){
             if(i<len){
                 arr[i-1].className = "";
-                if(arr[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") == searchText){
+                if(arr[i].firstChild.nodeValue == searchText){
                     arr[i].className = "found";
-                    lock = false;
                     clearInterval(timer);
                 }
                 else{
@@ -208,41 +206,41 @@
             }
             else{
                 arr[i-1].className = "";
-                lock = false;
                 clearInterval(timer);
             }
-        },2000);
+        },1000);
     }
 
 
     //初始化
     function reset(){
         var arr = [];
-        traverseDF(nodes);
         for(var i=0;i<arr.length;i++){
             arr[i].className = "default";
         }
     }
 
     addHandler(btn1,"click",function () {
-            reset();
-            traverseDF(nodes);
-            render();
+        reset();
+        traverseDF(nodes);
+        render();
     })
     addHandler(btn2,"click",function () {
-            reset();
-            traverseBF(nodes);
-            render();
+        reset();
+        var index = 0;
+        traverseBF(nodes);
+        render();
     })
     addHandler(btn3,"click",function () {
-            reset();
-            traverseDF(nodes);
-            render();
+        reset();
+        traverseDF(nodes);
+        render();
     })
     addHandler(btn4,"click",function () {
-            reset();
-            traverseBF(nodes);
-            render();
+        reset();
+        var index = 0;
+        traverseBF(nodes);
+        render();
     })
 
     /*
