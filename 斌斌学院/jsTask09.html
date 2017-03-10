@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 09</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        display:flex;
+        display:-webkit-flex;
+        flex-flow:row nowrap;
+        border: 1px solid #333333;
+        font-size:12px;
+        margin:auto;
+    }
+    #super {
+        width: 1200px;
+        height: 150px;
+        margin: 4px auto;
+    }
+    #call {
+        width: 500px;
+        height: 130px;
+    }
+    #apple {
+        width: 240px;
+        height: 110px;
+    }
+    #apple div{
+        width: 40px;
+        height: 90px;
+    }
+    #phone {
+        width: 90px;
+        height: 110px;
+    }
+    #study {
+        width: 130px;
+        height: 110px;
+    }
+    #study div {
+        width: 50px;
+        height: 90px;
+    }
+    #note {
+        width: 500px;
+        height: 130px;
+    }
+    #human {
+        width: 240px;
+        height: 110px;
+    }
+    #human div{
+        width: 50px;
+        height: 90px;
+    }
+    #program {
+        width: 220px;
+        height: 110px;
+    }
+    #element {
+        width: 110px;
+        height: 90px;
+    }
+    #cat {
+        width: 50px;
+        height: 70px;
+    }
+    #class {
+        width: 50px;
+        height: 90px;
+    }
+    #fish {
+        width: 150px;
+        height: 130px;
+    }
+    #button {
+        border: none;
+        justify-content:center;
+    }
+    input {
+        margin: 0 2px;
+    }
+    .default {
+        background-color: white;
+        color: black;
+    }
+    .active {
+        background-color: blue;
+        color: white;
+    }
+    .found {
+        background-color: red;
+        color: white;
+    }
+</style>
+<body>
+<section>
+    <div id="super">super
+        <div id="call">call
+            <div id="apple">apple
+                <div>pear</div>
+                <div>pig</div>
+                <div>cola</div>
+                <div>soccor</div>
+            </div>
+            <div id="phone">phone</div>
+            <div id="study">study
+                <div>book</div>
+                <div>school</div>
+            </div>
+        </div>
+        <div id="note">note
+            <div id="human">human
+                <div>code</div>
+                <div>operate</div>
+                <div>man</div>
+            </div>
+            <div id="program">program
+                <div id="element">element
+                    <div id="cat">cat</div>
+                </div>
+                <div id="class">class</div>
+            </div>
+        </div>
+        <div id="fish">fish</div>
+    </div>
+</section>
+
+<div id="button">
+    <input type="button" value="深度遍历">
+    <input type="button" value="广度遍历">
+    <input type="text" id="text">
+    <input type="button" value="深度查询">
+    <input type="button" value="广度查询">
+</div>
+<script>
+    var nodes = document.getElementById("super");
+    var btn1 = document.getElementsByTagName("input")[0];
+    var btn2 = document.getElementsByTagName("input")[1];
+    var btn3 = document.getElementsByTagName("input")[3];
+    var btn4 = document.getElementsByTagName("input")[4];
+    var index = 0;
+    var arr = [];
+
+
+    function addHandler(element, type ,func) {
+        if (element.addEventListener) {
+            element.addEventListener(type, func, false);
+        } else if (element.attachEvent) {
+            element.attachEvent("on" + type, func);
+        } else {
+            element["on"+type] = func;
+        }
+    }
+
+    //深度遍历DFS
+    function traverseDF(node) {
+        if(!(node == null)){
+            arr.push(node);
+            for (var i = 0, length = node.children.length; i < length; i++){
+                traverseDF(node.children[i]);
+            }
+        }
+    }
+
+    //广度遍历BFS
+    function traverseBF(node) {
+        if(!(node == null)){
+            arr.push(node);
+            traverseBF(node.nextElementSibling);
+            node = arr[index++];
+            traverseBF(node.firstElementChild);
+        }
+    }
+
+
+    //遍历可视化
+    function render(){
+        var searchText = document.getElementById("text").value;
+        var i = 0;
+        var len = arr.length;
+        if(arr[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") === searchText){  //注意使用replace将多余的空格去除
+            arr[i].className = "found";
+            clearInterval(timer);
+        }
+        else{
+            arr[i++].className = "active";
+        }
+
+        timer = setInterval(function(){
+            if(i<len){
+                arr[i-1].className = "default";
+                if(arr[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") === searchText){
+                    arr[i].className = "found";
+                    clearInterval(timer);
+                }
+                else{
+                    arr[i++].className = "active";
+                }
+            }
+            else{
+                arr[i-1].className = "default";
+                clearInterval(timer);
+            }
+        },1000);
+    }
+
+
+    addHandler(btn1,"click",function () {
+        arr = [];
+        traverseDF(nodes);
+        render();
+    })
+    addHandler(btn2,"click",function () {
+        arr = [];
+        var index = 0;
+        traverseBF(nodes);
+        render();
+    })
+    addHandler(btn3,"click",function () {
+        arr = [];
+        traverseDF(nodes);
+        render();
+    })
+    addHandler(btn4,"click",function () {
+        arr = [];
+        var index = 0;
+        traverseBF(nodes);
+        render();
+    })
+
+    //目前存在问题：对于恶意重复点击按钮没有保护措施；
+
+</script>
+</body>
+</html>
