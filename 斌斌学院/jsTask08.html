@@ -144,7 +144,6 @@
     var btn2 = document.getElementsByTagName("input")[1];
     var btn3 = document.getElementsByTagName("input")[3];
     var btn4 = document.getElementsByTagName("input")[4];
-    var searchText = document.getElementById("text").value;
     var index = 0;
     var arr = [];
 
@@ -182,10 +181,10 @@
 
     //遍历可视化
     function render(){
-        console.log(searchText);
+        var searchText = document.getElementById("text").value;
         var i = 0;
         var len = arr.length;
-        if(arr[i].firstChild.nodeValue == searchText){
+        if(arr[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") === searchText){  //注意使用replace将多余的空格去除
             arr[i].className = "found";
             clearInterval(timer);
         }
@@ -195,8 +194,8 @@
 
         timer = setInterval(function(){
             if(i<len){
-                arr[i-1].className = "";
-                if(arr[i].firstChild.nodeValue == searchText){
+                arr[i-1].className = "default";
+                if(arr[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") === searchText){
                     arr[i].className = "found";
                     clearInterval(timer);
                 }
@@ -205,155 +204,38 @@
                 }
             }
             else{
-                arr[i-1].className = "";
+                arr[i-1].className = "default";
                 clearInterval(timer);
             }
         },1000);
     }
 
 
-    //初始化
-    function reset(){
-        var arr = [];
-        for(var i=0;i<arr.length;i++){
-            arr[i].className = "default";
-        }
-    }
-
     addHandler(btn1,"click",function () {
-        reset();
+        arr = [];
         traverseDF(nodes);
         render();
     })
     addHandler(btn2,"click",function () {
-        reset();
+        arr = [];
         var index = 0;
         traverseBF(nodes);
         render();
     })
     addHandler(btn3,"click",function () {
-        reset();
+        arr = [];
         traverseDF(nodes);
         render();
     })
     addHandler(btn4,"click",function () {
-        reset();
+        arr = [];
         var index = 0;
         traverseBF(nodes);
         render();
     })
 
-    /*
-    function Node(data) {
-        this.data = data;
-        this.parent = null;
-        this.children = [];
-    }
+    //目前存在问题：对于恶意重复点击按钮没有保护措施；
 
-    function Tree(data) {
-        var node = new Node(data);
-        this._root = node;
-    }
-
-    Tree.prototype.traverseDF = function(callback) {
-
-        // this is a recurse and immediately-invoking function
-        (function recurse(currentNode) {
-            // step 2
-            for (var i = 0, length = currentNode.children.length; i < length; i++) {
-                // step 3
-                recurse(currentNode.children[i]);
-            }
-
-            // step 4
-            callback(currentNode);
-
-            // step 1
-        })(this._root);
-
-    };
-
-    Tree.prototype.traverseBF = function(callback) {
-        var queue = new Queue();
-
-        queue.enqueue(this._root);
-
-        currentTree = queue.dequeue();
-
-        while(currentTree){
-            for (var i = 0, length = currentTree.children.length; i < length; i++) {
-                queue.enqueue(currentTree.children[i]);
-            }
-
-            callback(currentTree);
-            currentTree = queue.dequeue();
-        }
-    };
-
-    Tree.prototype.contains = function(callback, traversal) {
-        traversal.call(this, callback);
-    };
-
-    Tree.prototype.add = function(data, toData, traversal) {
-        var child = new Node(data),
-            parent = null,
-            callback = function(node) {
-                if (node.data === toData) {
-                    parent = node;
-                }
-            };
-
-        this.contains(callback, traversal);
-
-        if (parent) {
-            parent.children.push(child);
-            child.parent = parent;
-        } else {
-            throw new Error('Cannot add node to a non-existent parent.');
-        }
-    };
-
-    Tree.prototype.remove = function(data, fromData, traversal) {
-        var tree = this,
-            parent = null,
-            childToRemove = null,
-            index;
-
-        var callback = function(node) {
-            if (node.data === fromData) {
-                parent = node;
-            }
-        };
-
-        this.contains(callback, traversal);
-
-        if (parent) {
-            index = findIndex(parent.children, data);
-
-            if (index === undefined) {
-                throw new Error('Node to remove does not exist.');
-            } else {
-                childToRemove = parent.children.splice(index, 1);
-            }
-        } else {
-            throw new Error('Parent does not exist.');
-        }
-
-        return childToRemove;
-    };
-
-    function findIndex(arr, data) {
-        var index;
-
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].data === data) {
-                index = i;
-            }
-        }
-
-        return index;
-    }
-    */
 </script>
 </body>
 </html>
