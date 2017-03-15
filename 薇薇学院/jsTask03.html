@@ -4,22 +4,81 @@
     <meta charset="UTF-8">
     <title>任务三：三栏式布局</title>
     <style>
-        .main {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            padding: 20px;
+            margin: 20px;
+            background-color: #EEE;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        .team {
+            float: left;
+            width: 80px;
+            height: 80px;
+            background-color: #EEE;
+            border: 1px solid #333;
+            font-size: small;
+            text-align: center;
+            line-height: 80px;
+        }
+        .logo {
+            float: left;
+            width: 80px;
+            height: 80px;
+            background-color: #EEE;
+            border: 1px solid #333;
+            font-size: small;
+            text-align: center;
+            line-height: 80px;
+            margin-bottom: 20px;
+        }
+        .logo:last-child {
+            margin-bottom: 0;
+        }
+        .left {
+            float: left;
+            width: 200px;
+            background-color: #FFF;
+            padding: 20px 0 20px 20px;
+            border: 1px solid #333;
+        }
+        .right {
+            float: right;
+            width: 120px;
+            background-color: #FFF;
+            border: 1px solid #333;
             padding: 20px;
         }
+        .introduction {
+            margin-left: 220px;
+            margin-right: 140px;
+            background: #FFF;
+            border: 1px solid #333;
+            padding: 20px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="main">
+    <div class="container">
         <div class="left">
-            <div class="logo"></div>
+            <div class="team">团队logo</div>
             <div class="name">团队名称</div>
         </div>
-        <div class="introduction">
-
-        </div>
         <div class="right">
-
+            <div class="logo">个人logo</div>
+            <div class="logo">个人logo</div>
+            <div class="logo">个人logo</div>
+            <div class="logo">个人logo</div>
+        </div>
+        <div class="introduction">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur, dolore labore, laboriosam maiores modi nobis nostrum, odio officia provident quaerat reprehenderit ullam! Ab amet assumenda atque corporis cum cupiditate dignissimos doloribus eaque eligendi eos est excepturi fugit id inventore itaque iusto labore laborum molestias nostrum, nulla odit officiis perferendis porro possimus quaerat quidem quos reprehenderit sit temporibus unde veniam voluptas voluptatem voluptatum! Aliquam animi aperiam architecto commodi delectus dicta dignissimos dolore dolorem dolores esse excepturi expedita fuga illum in iste laborum molestiae molestias nihil odio, officia placeat praesentium provident qui, quod repellat sequi similique tempora totam vitae voluptatibus, voluptatum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur dicta, ducimus et, exercitationem fuga inventore, ipsa molestiae quas qui ratione sunt voluptatem voluptatibus. Adipisci eos impedit ipsa iste libero nihil officia provident. Ab accusantium asperiores consectetur delectus ducimus earum ex facilis id impedit molestiae, molestias necessitatibus, nisi, nostrum porro praesentium quia reiciendis sequi veniam. Aliquam culpa, cum debitis hic ipsum laborum, minus modi non nostrum odio odit officia porro rem? Accusantium facere hic illo ipsam nulla pariatur reiciendis suscipit? Autem commodi cum debitis, distinctio dolorum, earum iste iure modi nesciunt nostrum, odio quas quasi quidem vitae voluptate? Accusantium aspernatur at atque debitis doloribus est harum, in incidunt, ipsa non optio, possimus quo repudiandae sunt temporibus. Aliquam beatae blanditiis consequuntur corporis deserunt doloremque enim eveniet fugiat, harum, illo incidunt ipsum maxime necessitatibus nihil pariatur possimus quae quos reprehenderit rerum sapiente similique totam voluptate voluptatibus! Assumenda at beatae blanditiis culpa cupiditate deserunt dignissimos ea earum eos eveniet exercitationem expedita hic ipsa, ipsam iste laudantium libero nisi nobis nostrum odio officia officiis, omnis perspiciatis possimus quae quaerat quam quasi qui quis quisquam ratione reprehenderit similique sunt tempora tenetur ut voluptate! A at earum iste itaque laudantium magni obcaecati quidem, sapiente unde voluptates.</p>
         </div>
     </div>
 </body>
