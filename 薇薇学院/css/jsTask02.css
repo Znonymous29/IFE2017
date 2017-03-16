@@ -105,7 +105,18 @@ aside h1 {
 }
 #form p{
     color: grey;
+    font-size: 14px;
 }
+#form .left {
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+}
+#form .right{
+     margin-left: 30%;
+     padding-left: 6px;
+     color: #6c6c6c;
+ }
 
 .footer{
     background-color: black;
@@ -118,7 +129,6 @@ aside h1 {
     height: 50px;
     background-color: #3355D0;
     color: white;
-    margin: 10px;
     box-shadow:none;
     border-radius: 15px;
 }

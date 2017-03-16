@@ -171,32 +171,34 @@
             <h1>这里是侧栏，这是标题</h1>
             <div id="form">
                 <form action="">
-                    <label for="email">请输入邮箱地址:</label>
-                    <input type="text" id="email" value="这是一个文本输入框">
-                    <p>邮箱地址请按格式输入</p>
-                    <label for="password">请输入密码:</label>
-                    <input type="text" id="password" value="······">
-                    <label for="check_password">请重复输入密码:</label>
-                    <input type="text" id="check_password" value="······">
-                    <p>密码为6-16位英文数字</p>
-                </form>
-                <form>
-                    性别：
+                    <label for="email" class="left">请输入邮箱地址:</label>
+                    <input type="text" id="email" placeholder="这是一个文本输入框" align="left">
+                    <p class="right">邮箱地址请按格式输入</p>
+                    <label for="password" class="left">请输入密码:</label>
+                    <input type="password" id="password" value="123456" align="left">
+                    <br>
+                    <label for="check_password" class="left">请重复输入密码:</label>
+                    <input type="password" id="check_password" value="123456" align="left">
+                    <p class="right">密码为6-16位英文数字</p>
+                    <span class="left">性别:</span>
                     <input type="radio" checked name="Sex" value="male">男
                     <input type="radio" name="Sex" value="female">女
-                    城市：
-                    <select name="city" id="">
+                    <br>
+                    <label for="city" class="left">城市:</label>
+                    <select name="city" id="city">
                         <option value="0" selected>北京</option>
                         <option value="1">广州</option>
                         <option value="2">上海</option>
                         <option value="3">南京</option>
                         <option value="4">深圳</option>
                     </select>
-                    爱好：
+                    <br>
+                    <label class="left">爱好:</label>
                     <input type="checkbox" name="favor">运动
                     <input type="checkbox" name="favor">艺术
                     <input type="checkbox" name="favor">科学
-                    个人描述：
+                    <br>
+                    <label class="left">个人描述:</label>
                     <textarea name="description" id="" cols="30" rows="3"></textarea>
                 </form>
                 <input type="button" value="确认提交" class="fbtn">
